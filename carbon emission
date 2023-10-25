@@ -1,0 +1,31 @@
+
+const emailSources = {
+    'gmail': { inbox: 0.5, sent: 0.2, spam: 0.1 },
+
+};
+
+function getCarbonFootprint(entityType, entity) {
+    if (entityType === 'email') {
+        const { emailId, source } = entity;
+        if (emailSources[source]) {
+            const { inbox, sent, spam } = emailSources[source];
+            console.log(`${entityType} (entityType basis)`);
+            console.log(`emailId: ${emailId}`);
+            console.log(`source: ${source}`);
+            console.log(`inbox: ${inbox} KG`);
+            console.log(`sent: ${sent} KG`);
+            console.log(`spam: ${spam} KG`);
+        } else {
+            console.log('Unknown email source');
+        }
+    } else {
+        console.log('Invalid entityType');
+    }
+}
+
+const entity = {
+    emailId: 'abc@xyz.com',
+    source: 'gmail' 
+};
+
+getCarbonFootprint('email', entity);
